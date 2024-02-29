@@ -48,3 +48,8 @@ h1{
     height:130px
     
 }
+
+.filter-btn{
+    margin: 10px;
+    cursor: pointer;
+}
