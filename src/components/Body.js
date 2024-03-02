@@ -1,19 +1,36 @@
 import RestroCard from "./RestroCard";
-import resObject from "../utils/mockData";
-import { useState } from "react";
-import { useEffect } from "react";
-
-
-
-
+import resObject,{resObject2} from "../utils/mockData";
+import { useState, useEffect } from "react";
+import Shimmer from "./Shimmer";
 
 
 const Body=()=>{
 
 //State variable - Super powerful variable
-const [listOfRestuarants,setlistOfResturants]=useState(
-   resObject
-);
+const [listOfRestuarants,setlistOfResturants]=useState( []);
+const [searchText,setsearchText]= useState('');
+const [filterResturants,setfilterResturants]=useState([]);
+useEffect(()=>{
+fetchData();
+},[])
+
+
+const fetchData = async () =>{
+ const data=await fetch('https://www.grubhub.com/lets-eat');
+
+// I don't have swiggy Api so i waited to call new restro object so i will have all data
+ setTimeout(() => {
+        console.log("sleeping for loading resturants");
+        if(data)
+            setlistOfResturants(resObject2)
+            setfilterResturants(resObject2)
+    }, 3000);
+};
+
+// conditional rendering 
+//if (listOfRestuarants.length == 0){
+  //  return <Shimmer></Shimmer>
+//}
 
 //Normal JS variable
 let listOfRestuarantsJS=[
@@ -75,9 +92,32 @@ let listOfRestuarantsJS=[
     }
 
 ];
-    return(
+    return listOfRestuarants.length == 0 ? <Shimmer/> :(
         <div>
            <div className="filter">
+              <div className="search-div">
+              <input type='text' className="search-box" value={searchText} 
+              onChange={(e)=>{
+                setsearchText(e.target.value);
+                
+             } 
+            }></input>
+              <button className="search-btn" 
+            onClick={() => {
+                
+                console.log(searchText);
+                const filteredList = searchText.length > 0
+                    ? listOfRestuarants.filter(res => res.resName.toLowerCase().includes(searchText.toLowerCase()))
+                    : resObject2;
+                console.log('FilteredList', filteredList);
+                setfilterResturants(filteredList);
+            }}
+>            
+                
+                Search</button>
+              </div>
+             
+        
               <button className="filter-btn" onClick={
                 ()=>{
                 
@@ -92,7 +132,7 @@ let listOfRestuarantsJS=[
            </div>
             <div className='res-container'>
                 {
-                listOfRestuarants.map(resturant=><RestroCard key={resturant.id} resData={resturant}></RestroCard>)
+                filterResturants.map(resturant=><RestroCard key={resturant.id} resData={resturant}></RestroCard>)
             }
                 
             </div>
