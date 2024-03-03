@@ -36,9 +36,11 @@ h1{
     margin: 5px;
     padding:5px;
     width: 200px;
-    height: 300px;
-   
+    height: 400px;
 }
+
+
+
 .res-card:hover{
     cursor: pointer;
     border: 1px solid black;

@@ -16,8 +16,16 @@ fetchData();
 
 
 const fetchData = async () =>{
- const data=await fetch('https://www.grubhub.com/lets-eat');
+ const data =await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=16.3066525&lng=80.4365402&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
 
+const json =await data.json();
+
+//Optional chaining
+setlistOfResturants(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants)
+setfilterResturants(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants)
+
+};
+/*
 // I don't have swiggy Api so i waited to call new restro object so i will have all data
  setTimeout(() => {
         console.log("sleeping for loading resturants");
@@ -26,6 +34,7 @@ const fetchData = async () =>{
             setfilterResturants(resObject2)
     }, 3000);
 };
+*/
 
 // conditional rendering 
 //if (listOfRestuarants.length == 0){
@@ -104,35 +113,30 @@ let listOfRestuarantsJS=[
             }></input>
               <button className="search-btn" 
             onClick={() => {
-                
-                console.log(searchText);
                 const filteredList = searchText.length > 0
-                    ? listOfRestuarants.filter(res => res.resName.toLowerCase().includes(searchText.toLowerCase()))
-                    : resObject2;
-                console.log('FilteredList', filteredList);
+                    ? listOfRestuarants.filter(res => res.info.name.toLowerCase().includes(searchText.toLowerCase()))
+                    : listOfRestuarants;
                 setfilterResturants(filteredList);
             }}
->            
-                
+>                  
                 Search</button>
               </div>
              
         
               <button className="filter-btn" onClick={
                 ()=>{
-                
-                    
                     const filterList=listOfRestuarants.filter(
-                        (res)=>parseFloat(res.rating)>4
+                        (res)=>parseFloat(res.info.avgRating)>4.1
                     ); 
-                    setlistOfResturants(filterList)
-                console.log(filterList)
+                    console.log(filterList)
+                    setfilterResturants(filterList)
+
                 }}
               >Top Rated Resturants</button>
            </div>
             <div className='res-container'>
-                {
-                filterResturants.map(resturant=><RestroCard key={resturant.id} resData={resturant}></RestroCard>)
+                {      
+                filterResturants.map(resturant=><RestroCard key={resturant.info.id} resData={resturant}></RestroCard>)
             }
                 
             </div>
