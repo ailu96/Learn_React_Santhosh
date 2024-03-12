@@ -14,7 +14,7 @@ const RestroCard=(props)=>{
     const {name,cuisines,avgRating,sla,cloudinaryImageId,costForTwo}=props.resData.info
     const restroLogo=`${IMAGE_URL}${cloudinaryImageId}`;
     return(
-        <div className="res-card" style={StyleCard}>
+       <div className="res-card" style={StyleCard}>
         <img className='res-image' alt='res-logo' src={restroLogo}></img>
         <h3>{name}</h3>
         <div style={cuisinesContainerStyle}> {/* Container for cuisines */}

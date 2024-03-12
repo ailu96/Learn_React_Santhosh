@@ -43,3 +43,10 @@ import {componenTName} from path
 
 
 when ever a state variable changes it re-renders the components
+
+
+# Two types of routing in web apps
+
+-Client Side Routing(Make a network call we don't reload the web page again and again instead we reload the component in a APP)
+
+-Server Side Routing(make a network call and get all data from server link About us page or something and loads the data again and again)

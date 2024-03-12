@@ -2,7 +2,7 @@ import RestroCard from "./RestroCard";
 import resObject,{resObject2} from "../utils/mockData";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
-
+import { Link } from "react-router-dom";
 
 const Body=()=>{
 
@@ -110,7 +110,9 @@ let listOfRestuarantsJS=[
                 setsearchText(e.target.value);
                 
              } 
-            }></input>
+            }>
+              
+            </input>
               <button className="search-btn" 
             onClick={() => {
                 const filteredList = searchText.length > 0
@@ -136,7 +138,8 @@ let listOfRestuarantsJS=[
            </div>
             <div className='res-container'>
                 {      
-                filterResturants.map(resturant=><RestroCard key={resturant.info.id} resData={resturant}></RestroCard>)
+                
+                filterResturants.map(resturant=><Link key={resturant.info.id} to={"/restaurants/"+resturant.info.id} ><RestroCard  resData={resturant}></RestroCard></Link>)
             }
                 
             </div>
