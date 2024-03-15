@@ -80,3 +80,11 @@ h1{
 .search-box{
     margin: 10px;
 }
+
+.user-card{
+    border: 1px solid black;
+    margin: 5px;
+}
+.gitLogo{
+    width: 110px;
+}
