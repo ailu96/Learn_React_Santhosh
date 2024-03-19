@@ -3,6 +3,7 @@ import resObject,{resObject2} from "../utils/mockData";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body=()=>{
 
@@ -35,6 +36,14 @@ setfilterResturants(json.data.cards[1].card.card.gridElements.infoWithStyle.rest
     }, 3000);
 };
 */
+
+
+const onlineStatus=useOnlineStatus();
+if (onlineStatus===false){
+  return (
+    <h1>Please Check your internet. Seems like you are Offline</h1>
+  )
+}
 
 // conditional rendering 
 //if (listOfRestuarants.length == 0){
