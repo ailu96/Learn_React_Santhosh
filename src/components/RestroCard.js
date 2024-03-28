@@ -14,17 +14,23 @@ const RestroCard=(props)=>{
     const {name,cuisines,avgRating,sla,cloudinaryImageId,costForTwo}=props.resData.info
     const restroLogo=`${IMAGE_URL}${cloudinaryImageId}`;
     return(
-       <div className="res-card" style={StyleCard}>
-        <img className='res-image' alt='res-logo' src={restroLogo}></img>
-        <h3>{name}</h3>
-        <div style={cuisinesContainerStyle}> {/* Container for cuisines */}
-                <h5>{cuisines.join()}</h5> {/* This will allow scrolling if cuisines overflow */}
+       <div className="m-4 p-4 w-[200px] h-[420px] bg-slate-100 rounded-lg">
+        <img className='rounded-lg' alt='res-logo' src={restroLogo}></img>
+        <h3 className="font-bold py-2 text-xl">{name}</h3>
+        <div className="max-h-12 overflow-hidden">
+                {/* Show a single line for cuisines */}
+                <h5 className="overflow-hidden whitespace-nowrap">{cuisines.slice(0, 3).join(', ')}</h5>
+                {/* Show full list of cuisines on hover */}
+                <div className="absolute bg-white p-2 rounded-md shadow-md top-8 left-0 hidden group-hover:block">
+                    {cuisines.join(', ')}
+                </div>
             </div>
         <h5>{costForTwo}</h5>
-        <h5>{avgRating}</h5> 
+        <h5>Rating: {avgRating} </h5> 
         <h5>{sla.deliveryTime} Minutes</h5>  
         </div>
     )
 }
+
 
 export default RestroCard;

@@ -10,6 +10,9 @@ import Error from "./components/Error";
 import RestroMenu from "./components/RestroMenu";
 import Shimmer from "./components/Shimmer";
 
+import './../style.css';
+
+
 const Grocery=lazy(()=>import("./components/Grocery"));
 
 const AppLayout = () =>{

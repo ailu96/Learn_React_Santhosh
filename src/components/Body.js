@@ -110,11 +110,13 @@ let listOfRestuarantsJS=[
     }
 
 ];
-    return listOfRestuarants.length == 0 ? <Shimmer/> :(
-        <div>
-           <div className="filter">
-              <div className="search-div">
-              <input type='text' className="search-box" value={searchText} 
+    return listOfRestuarants.length == 0 ? 
+    <Shimmer/> 
+    :(
+        <div className="body">
+           <div className="filter flex">
+              <div className="search m-4 p-4">
+              <input type='text' className="border border-black border-solid" value={searchText} 
               onChange={(e)=>{
                 setsearchText(e.target.value);
                 
@@ -122,19 +124,18 @@ let listOfRestuarantsJS=[
             }>
               
             </input>
-              <button className="search-btn" 
+              <button className="px-4 py-1 bg-orange-300 m-4 rounded-lg" 
             onClick={() => {
                 const filteredList = searchText.length > 0
                     ? listOfRestuarants.filter(res => res.info.name.toLowerCase().includes(searchText.toLowerCase()))
                     : listOfRestuarants;
                 setfilterResturants(filteredList);
             }}
->                  
+>
                 Search</button>
               </div>
-             
-        
-              <button className="filter-btn" onClick={
+              <div className="search m-3 p-3 flex items-center">
+              <button className="px-3 py-1 bg-gray-300 rounded-lg" onClick={
                 ()=>{
                     const filterList=listOfRestuarants.filter(
                         (res)=>parseFloat(res.info.avgRating)>4.1
@@ -145,7 +146,8 @@ let listOfRestuarantsJS=[
                 }}
               >Top Rated Resturants</button>
            </div>
-            <div className='res-container'>
+           </div>
+            <div className='flex flex-wrap rounded-lg'>
                 {      
                 
                 filterResturants.map(resturant=><Link key={resturant.info.id} to={"/restaurants/"+resturant.info.id} ><RestroCard  resData={resturant}></RestroCard></Link>)
