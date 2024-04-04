@@ -32,5 +32,19 @@ const RestroCard=(props)=>{
     )
 }
 
+//High Order Component
 
+//input-RestroCard and output will be Restrocard with Veg Label 
+
+
+export const withVegLabel=(RestroCard)=>{
+    return (props)=>{
+        return(
+            <div>
+                <label className="absolute bg-green-400 text-white m-2 p-2 rounded-xl">Veg Offered</label>
+                <RestroCard {...props}/>
+            </div>
+        )
+    }
+}
 export default RestroCard;

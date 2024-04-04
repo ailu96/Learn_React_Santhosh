@@ -1,4 +1,4 @@
-import RestroCard from "./RestroCard";
+import RestroCard,{withVegLabel} from "./RestroCard";
 import resObject,{resObject2} from "../utils/mockData";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
@@ -11,6 +11,9 @@ const Body=()=>{
 const [listOfRestuarants,setlistOfResturants]=useState( []);
 const [searchText,setsearchText]= useState('');
 const [filterResturants,setfilterResturants]=useState([]);
+
+const RestaurantCardVegLabel= withVegLabel(RestroCard);
+
 useEffect(()=>{
 fetchData();
 },[])
@@ -150,7 +153,15 @@ let listOfRestuarantsJS=[
             <div className='flex flex-wrap rounded-lg'>
                 {      
                 
-                filterResturants.map(resturant=><Link key={resturant.info.id} to={"/restaurants/"+resturant.info.id} ><RestroCard  resData={resturant}></RestroCard></Link>)
+                filterResturants.map(resturant=>(
+                <Link key={resturant.info.id} to={"/restaurants/"+resturant.info.id} >
+                  {/**if Resturant offers Veg then we add Veg label to restro card */}
+                  {resturant.info.veg ?(
+                    <RestaurantCardVegLabel resData={resturant}></RestaurantCardVegLabel>
+                  ):(
+                  <RestroCard  resData={resturant}></RestroCard>)}
+                </Link>
+                  ))
             }
                 
             </div>
