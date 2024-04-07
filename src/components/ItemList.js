@@ -1,6 +1,17 @@
+import { useDispatch } from "react-redux";
 import { IMAGE_URL } from "../utils/constants";
+import { addItem } from "../redux/cartSlice";
 
 const ItemList =({items})=>{
+
+    const dispatch=useDispatch();
+
+    const handleAddItem =(item)=>{
+        //dispatch actions
+        dispatch(addItem(item))
+    }
+
+
     return (
         <div>
                 {items.map((item) =>(
@@ -16,7 +27,8 @@ const ItemList =({items})=>{
                             <p className="text-xs">{item.card.info.description}</p>
                        </div>
                        <div className="ml-auto">
-                        <button className="p-2 bg-green-400 rounded-lg text-white">ADD</button>
+                        <button className="p-2 bg-green-400 rounded-lg text-white" 
+                        onClick={()=>handleAddItem(item)}>ADD</button>
                         </div>
                         </div>
                 ))}

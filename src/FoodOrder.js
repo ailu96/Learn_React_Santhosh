@@ -9,18 +9,22 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestroMenu from "./components/RestroMenu";
 import Shimmer from "./components/Shimmer";
-
+import { Provider } from "react-redux";
 import './../style.css';
+import appStore from "./redux/appStore";
+import Cart from "./components/Cart";
 
 
 const Grocery=lazy(()=>import("./components/Grocery"));
 
 const AppLayout = () =>{
     return (
+        <Provider store={appStore}>
         <div className='app'>
            <Header/>
            <Outlet />
         </div>
+        </Provider>
     );
 }
 
@@ -49,6 +53,10 @@ const appRouter= createBrowserRouter(
             {
                 path:"/restaurants/:resId",
                 element:<RestroMenu />
+            },
+            {
+                path:"/Cart",
+                element:<Cart />
             },
         ],
         errorElement:<Error></Error>
