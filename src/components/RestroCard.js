@@ -11,10 +11,13 @@ const cuisinesContainerStyle = {
 
 
 const RestroCard=(props)=>{
+
+
     const {name,cuisines,avgRating,sla,cloudinaryImageId,costForTwo}=props.resData.info
     const restroLogo=`${IMAGE_URL}${cloudinaryImageId}`;
     return(
-       <div className="m-4 p-4 w-[200px] h-[420px] bg-slate-100 rounded-lg">
+       <div  data-testid="resCard"
+       className="m-4 p-4 w-[200px] h-[420px] bg-slate-100 rounded-lg">
         <img className='rounded-lg' alt='res-logo' src={restroLogo}></img>
         <h3 className="font-bold py-2 text-xl">{name}</h3>
         <div className="max-h-12 overflow-hidden">

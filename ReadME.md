@@ -103,3 +103,34 @@ Rendering:
 The JSX is similar to your class component, just that we are directly using userInfo state instead of this.state.userInfo.
 props.contact is used directly in the JSX, similar to how you accessed props in the class component.
 This functional component will behave similarly to your class component, fetching user data from the GitHub API and rendering it in the UI.
+
+
+
+
+# Redux ToolKits
+    - Install @reduxjs/toolkit and react-redux
+    - Build our store
+    - Connect our store to our APP
+    - Slice(cartSlice)
+    - Dispatch(Action)
+    - Selector
+
+
+# Types of testing (developer)
+    - unit testing
+    - integration testing 
+    - end to end testing - E2E testing
+
+
+# Setting up testing in our app
+    - Install React Testing library
+    - Install Jest
+    - install babel dependencies
+    - Configure Babel 
+    - Configure Parcel comfog file to disable default babel transpilation
+    - Jest Configuration
+    - jest -npx jest --init
+    - install jsdom library
+    - Install Babel/Preset-react
+    - Include Babel/preset-react inside my babel config
+    - Install npm i -D @testing-library/jest-dom

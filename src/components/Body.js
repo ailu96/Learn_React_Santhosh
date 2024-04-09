@@ -119,7 +119,9 @@ let listOfRestuarantsJS=[
         <div className="body">
            <div className="filter flex">
               <div className="search m-4 p-4">
-              <input type='text' className="border border-black border-solid" value={searchText} 
+              <input type='text' 
+              data-testid="searchInput"
+              className="border border-black border-solid" value={searchText} 
               onChange={(e)=>{
                 setsearchText(e.target.value);
                 
@@ -141,9 +143,9 @@ let listOfRestuarantsJS=[
               <button className="px-3 py-1 bg-gray-300 rounded-lg" onClick={
                 ()=>{
                     const filterList=listOfRestuarants.filter(
-                        (res)=>parseFloat(res.info.avgRating)>4.1
+                        (res)=>parseFloat(res.info.avgRating)>4.4
                     ); 
-                    console.log(filterList)
+                    
                     setfilterResturants(filterList)
 
                 }}
